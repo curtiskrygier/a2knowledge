@@ -1,0 +1,186 @@
+direction: down
+
+title: Agentic Resource Discovery {
+  near: top-left
+  shape: text
+  style.font-size: 36
+  style.bold: true
+  style.font-color: "#202124"
+}
+
+subtitle: "Two complementary pieces — publish a catalog, run a registry, or use both. An AI agent can use either path independently." {
+  near: top-left
+  shape: text
+  style.font-size: 14
+  style.font-color: "#5f6368"
+}
+
+# ── ROW 1: CATALOG (left) and REGISTRY (right) side by side ──────────────────
+catalog: "① CATALOG — the publish layer" {
+  style.fill: "#e8f0fe"
+  style.stroke: "#c5cae9"
+  style.stroke-width: 2
+  style.border-radius: 12
+  style.font-color: "#1967d2"
+  style.bold: true
+  style.font-size: 16
+
+  a2knowledge: "a2knowledge" {
+    style.fill: "#ffffff"
+    style.stroke: "#4285f4"
+    style.border-radius: 8
+    style.font-color: "#202124"
+    style.bold: true
+    files: "ai-catalog.json\n/.well-known/" {
+      shape: text
+      style.font-size: 11
+      style.font-color: "#5f6368"
+      style.italic: true
+    }
+  }
+
+  a2ui: "a2ui" {
+    style.fill: "#ffffff"
+    style.stroke: "#4285f4"
+    style.border-radius: 8
+    style.font-color: "#202124"
+    style.bold: true
+    files: "atom vocabulary\nrender capabilities" {
+      shape: text
+      style.font-size: 11
+      style.font-color: "#5f6368"
+      style.italic: true
+    }
+  }
+
+  note: "self-hosted · no registration required" {
+    shape: text
+    style.font-size: 11
+    style.font-color: "#1967d2"
+    style.italic: true
+  }
+}
+
+registry: "② REGISTRY — the discovery layer" {
+  style.fill: "#f3e8fd"
+  style.stroke: "#ce93d8"
+  style.stroke-width: 2
+  style.border-radius: 12
+  style.font-color: "#6200ea"
+  style.bold: true
+  style.font-size: 16
+
+  ard: "Registry\ncurtiskrygier/ard" {
+    style.fill: "#7c4dff"
+    style.stroke: "#6200ea"
+    style.border-radius: 8
+    style.font-color: "#ffffff"
+    style.bold: true
+    style.font-size: 18
+  }
+
+  desc: "Independent discovery service\nRicher, governed, federated search\nReturns: what each resource does,\nwho provides it, how to invoke it" {
+    shape: text
+    style.font-size: 11
+    style.font-color: "#4a148c"
+    style.italic: true
+  }
+
+  case_export: "CASE export  ·  application/a2ui-knowledge+json" {
+    style.fill: "#ede7f6"
+    style.stroke: "#7c4dff"
+    style.border-radius: 6
+    style.font-color: "#4a148c"
+    style.bold: true
+    style.font-size: 11
+  }
+}
+
+# ── ROW 2: AGENT — full width below both panels ───────────────────────────────
+agent: "Your AI Agent\nFilters ranked matches · Verifies trust/identity · Authenticates & Invokes" {
+  style.fill: "#e8f0fe"
+  style.stroke: "#4285f4"
+  style.stroke-width: 2
+  style.border-radius: 12
+  style.font-color: "#1967d2"
+  style.bold: true
+  style.font-size: 18
+}
+
+# ── ROW 3: PROTOCOL PILLS ─────────────────────────────────────────────────────
+a2a: A2A {
+  style.fill: "#34a853"
+  style.stroke: "#1e8e3e"
+  style.border-radius: 20
+  style.font-color: "#ffffff"
+  style.bold: true
+}
+
+mcp: MCP {
+  style.fill: "#4285f4"
+  style.stroke: "#1967d2"
+  style.border-radius: 20
+  style.font-color: "#ffffff"
+  style.bold: true
+}
+
+api: API {
+  style.fill: "#9aa0a6"
+  style.stroke: "#80868b"
+  style.border-radius: 20
+  style.font-color: "#ffffff"
+  style.bold: true
+}
+
+# ── ROW 4: BOTTOM JOURNEY ─────────────────────────────────────────────────────
+publish: "① PUBLISH\nhost ai-catalog.json on your domain" {
+  shape: text
+  style.font-size: 11
+  style.font-color: "#1967d2"
+}
+
+crawl: "② CRAWL\nregistry may index catalogs (optional)" {
+  shape: text
+  style.font-size: 11
+  style.font-color: "#6200ea"
+}
+
+search: "③ SEARCH\nagent queries catalog or registry" {
+  shape: text
+  style.font-size: 11
+  style.font-color: "#34a853"
+}
+
+verify: "④ VERIFY\npublisher identity + Trust Manifest" {
+  shape: text
+  style.font-size: 11
+  style.font-color: "#e65100"
+}
+
+connect: "⑤ CONNECT\ninvoke via MCP, A2A, or API" {
+  shape: text
+  style.font-size: 11
+  style.font-color: "#202124"
+}
+
+# ── CONNECTIONS ───────────────────────────────────────────────────────────────
+# Both panels → agent forces them to the same dagre rank (side by side)
+catalog -> agent: "agent reads directly" {
+  style.stroke: "#4285f4"
+  style.stroke-width: 2
+  style.font-color: "#1967d2"
+  style.font-size: 12
+  style.italic: true
+}
+
+registry -> agent: "agent queries by intent — ranked matches returned" {
+  style.stroke: "#7c4dff"
+  style.stroke-width: 2
+  style.font-color: "#6200ea"
+  style.font-size: 12
+  style.italic: true
+}
+
+agent -> a2a
+agent -> mcp
+agent -> api
